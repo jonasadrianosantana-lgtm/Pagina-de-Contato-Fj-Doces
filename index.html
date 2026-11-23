@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#6b4038">
+    <meta name="description" content="Entre em contato com a FJ Doces. Estamos prontos para adoçar o seu dia!">
+    <link rel="icon" href="icon/WhatsApp-Image-2026-11-22-at-23.54.04.ico" type="image/x-icon">
+    <title>Contato | FJ Doces</title>
+    <style>
+        :root {
+            color-scheme: light;
+            --marrom: #6b4038;
+            --marrom-escuro: #482b27;
+            --rosa: #f7dce2;
+            --rosa-claro: #fff7f8;
+            --texto: #493b38;
+            --branco: #fff;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(145deg, var(--rosa-claro), var(--rosa) 58%, #f2d2c8);
+            color: var(--texto);
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        .navbar {
+            background: var(--marrom);
+            box-shadow: 0 3px 14px rgb(72 43 39 / 18%);
+        }
+
+        .nav-content {
+            width: min(1100px, calc(100% - 40px));
+            min-height: 76px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .brand {
+            color: var(--branco);
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 1.65rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-decoration: none;
+        }
+
+        .nav-link {
+            color: var(--branco);
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 160ms ease;
+        }
+
+        .nav-link:hover,
+        .nav-link:focus-visible {
+            color: var(--rosa);
+        }
+
+        main {
+            width: min(900px, calc(100% - 40px));
+            margin: 0 auto;
+            padding: 76px 0 88px;
+        }
+
+        .intro {
+            margin-bottom: 38px;
+            text-align: center;
+        }
+
+        .eyebrow {
+            margin: 0 0 10px;
+            color: var(--marrom);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            margin: 0;
+            color: var(--marrom-escuro);
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            line-height: 1.15;
+        }
+
+        .intro p:last-child {
+            max-width: 520px;
+            margin: 16px auto 0;
+            font-size: 1.08rem;
+            line-height: 1.7;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .contact-card {
+            padding: 30px;
+            border: 1px solid rgb(107 64 56 / 12%);
+            border-radius: 20px;
+            background: rgb(255 255 255 / 84%);
+            box-shadow: 0 12px 30px rgb(72 43 39 / 9%);
+            text-align: center;
+        }
+
+        .contact-icon {
+            width: 54px;
+            height: 54px;
+            margin: 0 auto 17px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            background: var(--rosa);
+            color: var(--marrom);
+            font-size: 1.5rem;
+        }
+
+        .contact-card h2 {
+            margin: 0 0 20px;
+            color: var(--marrom-escuro);
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 1.45rem;
+        }
+
+        .whatsapp-link {
+            display: inline-flex;
+            min-height: 46px;
+            align-items: center;
+            justify-content: center;
+            padding: 0 20px;
+            border-radius: 999px;
+            background: var(--marrom);
+            color: var(--branco);
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 160ms ease, transform 160ms ease;
+        }
+
+        .whatsapp-link:hover,
+        .whatsapp-link:focus-visible {
+            transform: translateY(-2px);
+            background: var(--marrom-escuro);
+        }
+
+        footer {
+            padding: 20px;
+            color: var(--branco);
+            background: var(--marrom);
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        @media (max-width: 600px) {
+            .nav-content {
+                min-height: 68px;
+            }
+
+            .brand {
+                font-size: 1.4rem;
+            }
+
+            main {
+                padding: 56px 0 64px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-card {
+                padding: 26px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <nav class="nav-content" aria-label="Navegação principal">
+            <a class="brand" href="#inicio">FJ Doces</a>
+            <a class="nav-link" href="#contatos">Fale conosco</a>
+        </nav>
+    </header>
+
+    <main id="inicio">
+        <section class="intro" aria-labelledby="titulo-contato">
+            <p class="eyebrow">Feito com carinho para você</p>
+            <h1 id="titulo-contato">Vamos adoçar o seu dia?</h1>
+            <p>Entre em contato com a nossa equipe. Será um prazer atender você!</p>
+        </section>
+
+        <section class="contact-grid" id="contatos" aria-label="Canais de contato">
+            <article class="contact-card">
+                <div class="contact-icon" aria-hidden="true">♡</div>
+                <h2>Vendedora Fernanda</h2>
+                <a class="whatsapp-link" href="https://wa.me/558498991579" target="_blank" rel="noopener noreferrer">Fale comigo no WhatsApp</a>
+            </article>
+
+            <article class="contact-card">
+                <div class="contact-icon" aria-hidden="true">♡</div>
+                <h2>Vendedor Jonas</h2>
+                <a class="whatsapp-link" href="https://wa.me/558499402380" target="_blank" rel="noopener noreferrer">Fale comigo no WhatsApp</a>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <p>FJ Doces · Feito com carinho</p>
+    </footer>
+</body>
+</html>
