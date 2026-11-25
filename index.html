@@ -58,7 +58,7 @@
             letter-spacing: 0.04em;
             text-decoration: none;
         }
-        .nav-link:hover,
+
         .nav-link {
             color: var(--creme);
             font-size: 0.95rem;
@@ -116,9 +116,9 @@
         .contact-card {
             padding: 30px;
             border: 1px solid rgb(74 34 14 / 14%);
+            border-radius: 20px;
             background: rgb(255 250 240 / 88%);
             box-shadow: 0 12px 30px rgb(74 34 14 / 10%);
-            box-shadow: 0 12px 30px rgb(72 43 39 / 9%);
             text-align: center;
         }
 
@@ -161,6 +161,134 @@
             background: var(--marrom-escuro);
         }
 
+        /* ---------- Produtos ---------- */
+        .produtos {
+            margin-top: 72px;
+        }
+
+        .produtos-titulo {
+            margin: 0 0 30px;
+            color: var(--marrom-escuro);
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            text-align: center;
+        }
+
+        .produtos-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .produto-card {
+            overflow: hidden;
+            border: 1px solid rgb(74 34 14 / 14%);
+            border-radius: 20px;
+            background: rgb(255 250 240 / 88%);
+            box-shadow: 0 12px 30px rgb(74 34 14 / 10%);
+            transition: transform 160ms ease;
+        }
+
+        .produto-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .produto-card img {
+            display: block;
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            object-fit: cover;
+            background: var(--rosa);
+        }
+
+        .produto-info {
+            padding: 22px 24px 26px;
+        }
+
+        .produto-info h3 {
+            margin: 0 0 8px;
+            color: var(--marrom-escuro);
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 1.4rem;
+        }
+
+        .produto-preco {
+            margin: 0 0 14px;
+            color: var(--marrom);
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .produto-label {
+            margin: 0 0 6px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .produto-info ul {
+            margin: 0;
+            padding-left: 20px;
+            line-height: 1.7;
+        }
+
+        /* ---------- Pedido por WhatsApp ---------- */
+        .pedido {
+            margin-top: 20px;
+            padding-top: 18px;
+            border-top: 1px solid rgb(74 34 14 / 14%);
+            display: grid;
+            gap: 12px;
+        }
+
+        .pedido label {
+            display: grid;
+            gap: 4px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .pedido select,
+        .pedido input {
+            padding: 10px 12px;
+            border: 1px solid rgb(74 34 14 / 25%);
+            border-radius: 10px;
+            background: var(--branco);
+            color: var(--texto);
+            font: inherit;
+            letter-spacing: normal;
+            text-transform: none;
+        }
+
+        .pedido-botoes {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+        }
+
+        .pedido-btn {
+            min-height: 46px;
+            padding: 6px 10px;
+            border: 0;
+            border-radius: 999px;
+            background: var(--marrom);
+            color: var(--branco);
+            font: inherit;
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 160ms ease, transform 160ms ease;
+        }
+
+        .pedido-btn:hover,
+        .pedido-btn:focus-visible {
+            transform: translateY(-2px);
+            background: var(--marrom-escuro);
+        }
+
         footer {
             padding: 20px;
             color: var(--branco);
@@ -173,6 +301,7 @@
             margin: 0;
         }
 
+        /* ---------- Celular (sempre por último) ---------- */
         @media (max-width: 600px) {
             .nav-content {
                 min-height: 68px;
@@ -186,13 +315,22 @@
                 padding: 56px 0 64px;
             }
 
-            .contact-grid {
+            .contact-grid,
+            .produtos-grid {
                 grid-template-columns: 1fr;
             }
 
             .contact-card {
                 padding: 26px 20px;
             }
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 0.88rem;
+
         }
     </style>
 </head>
@@ -201,7 +339,10 @@
     <header class="navbar">
         <nav class="nav-content" aria-label="Navegação principal">
             <a class="brand" href="#inicio">FJ Doces</a>
-            <a class="nav-link" href="#contatos">Fale conosco</a>
+            <div class="nav-links">
+                <a class="nav-link" href="#contatos">Fale conosco</a>
+                <a class="nav-link" href="#produtos">Produtos</a>
+            </div>
         </nav>
     </header>
 
@@ -227,11 +368,128 @@
                     rel="noopener noreferrer">Fale comigo no WhatsApp</a>
             </article>
         </section>
+
+        <section class="produtos" id="produtos" aria-labelledby="titulo-produtos">
+            <h2 id="titulo-produtos" class="produtos-titulo">Nossos Produtos</h2>
+
+            <div class="produtos-grid">
+                <article class="produto-card">
+                    <img src="img/cones.jpeg" alt="Cones Trufados" loading="lazy">
+                    <div class="produto-info">
+                        <h3>Cones Trufados</h3>
+                        <p class="produto-preco">R$ 9,00 a unidade</p>
+                        <p class="produto-label">Sabores disponíveis:</p>
+                        <ul>
+                            <li>Brigadeiro Tradicional</li>
+                            <li>Ninho com Brigadeiro</li>
+                            <li>Ninho com Negresco</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <article class="produto-card">
+                    <img src="img/brownie.jpeg" alt="Sanduíche de Brownie" loading="lazy">
+                    <div class="produto-info">
+                        <h3>Sanduíche de Brownie</h3>
+                        <p class="produto-preco">R$ 8,00 a unidade</p>
+                        <p class="produto-label">Sabores disponíveis:</p>
+                        <ul>
+                            <li>Ninho com Nutella</li>
+                            <li>Brigadeiro Tradicional</li>
+                            <li>Ninho com Brigadeiro</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <article class="produto-card">
+                    <img src="img/alfajor.jpeg" alt="Alfajor" loading="lazy">
+                    <div class="produto-info">
+                        <h3>Alfajor</h3>
+                        <p class="produto-preco">R$ 6,00 a unidade</p>
+                        <p class="produto-label">Sabores disponíveis:</p>
+                        <ul>
+                            <li>Doce de Leite</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <article class="produto-card">
+                    <img src="img/morango.jpeg" alt="Morango" loading="lazy">
+                    <div class="produto-info">
+                        <h3>Morango</h3>
+                        <p class="produto-preco">R$ 10,00 a unidade</p>
+                        <p class="produto-label">Sabores disponíveis:</p>
+                        <ul>
+                            <li>Coxinha de Brigadeiro</li>
+                            <li>Bombom de Ninho</li>
+                            <li>Bombom de Brigadeiro</li>
+                        </ul>
+                    </div>
+                </article>
+            </div>
+        </section>
     </main>
 
     <footer>
         <p>FJ Doces · Feito com carinho</p>
     </footer>
+
+    <script>
+        // Vendedores que recebem os pedidos (número com 55 + DDD)
+        const VENDEDORES = [
+            { nome: "Fernanda", numero: "558498991579" },
+            { nome: "Jonas", numero: "558499402380" }
+        ];
+
+        document.querySelectorAll(".produto-card").forEach(card => {
+            const produto = card.querySelector("h3").textContent.trim();
+            const precoTexto = card.querySelector(".produto-preco")?.textContent.trim() || "";
+            const precoUnit = parseFloat(
+                (precoTexto.match(/R\$\s*([\d.,]+)/)?.[1] || "").replace(".", "").replace(",", ".")
+            );
+            const sabores = [...card.querySelectorAll("li")].map(li => li.textContent.trim());
+
+            const pedido = document.createElement("div");
+            pedido.className = "pedido";
+            pedido.innerHTML = `
+                <label>Sabor
+                    <select class="p-sabor">
+                        ${sabores.map(s => `<option>${s}</option>`).join("")}
+                    </select>
+                </label>
+                <label>Quantidade
+                    <input class="p-qtd" type="number" min="1" value="1" inputmode="numeric">
+                </label>
+                <div class="pedido-botoes">
+                    ${VENDEDORES.map((v, i) =>
+                `<button type="button" class="pedido-btn" data-v="${i}">Pedir com ${v.nome}</button>`
+            ).join("")}
+                </div>
+            `;
+            card.querySelector(".produto-info").appendChild(pedido);
+
+            pedido.querySelectorAll(".pedido-btn").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    const vendedor = VENDEDORES[btn.dataset.v];
+                    const sabor = pedido.querySelector(".p-sabor").value;
+                    const qtd = Math.max(1, parseInt(pedido.querySelector(".p-qtd").value, 10) || 1);
+
+                    let msg = `Olá, ${vendedor.nome}! Gostaria de fazer um pedido:\n\n` +
+                        `*Produto:* ${produto}\n` +
+                        `*Sabor:* ${sabor}\n` +
+                        `*Quantidade:* ${qtd}`;
+
+                    if (!isNaN(precoUnit)) {
+                        const total = (precoUnit * qtd).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+                        msg += `\n*Total:* ${total}`;
+                    }
+
+                    const url = `https://wa.me/${vendedor.numero}?text=${encodeURIComponent(msg)}`;
+                    window.open(url, "_blank", "noopener");
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>
