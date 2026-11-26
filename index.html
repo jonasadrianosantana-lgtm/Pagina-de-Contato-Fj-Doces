@@ -27,6 +27,10 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             min-height: 100vh;
             margin: 0;
@@ -38,6 +42,9 @@
         .navbar {
             background: var(--marrom);
             box-shadow: 0 3px 14px rgb(74 34 14 / 22%);
+            position: sticky;
+            top: 0;
+            z-index: 20;
         }
 
         .nav-content {
@@ -70,6 +77,26 @@
         .nav-link:hover,
         .nav-link:focus-visible {
             color: var(--rosa);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 0.88rem;
+        }
+
+        .cart-badge {
+            display: inline-block;
+            min-width: 22px;
+            margin-left: 4px;
+            padding: 1px 7px;
+            border-radius: 999px;
+            background: var(--rosa);
+            color: var(--marrom);
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-align: center;
         }
 
         main {
@@ -233,7 +260,7 @@
             line-height: 1.7;
         }
 
-        /* ---------- Pedido por WhatsApp ---------- */
+        /* ---------- Adicionar ao carrinho ---------- */
         .pedido {
             margin-top: 20px;
             padding-top: 18px;
@@ -263,15 +290,9 @@
             text-transform: none;
         }
 
-        .pedido-botoes {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 10px;
-        }
-
         .pedido-btn {
             min-height: 46px;
-            padding: 6px 10px;
+            padding: 6px 14px;
             border: 0;
             border-radius: 999px;
             background: var(--marrom);
@@ -287,6 +308,157 @@
         .pedido-btn:focus-visible {
             transform: translateY(-2px);
             background: var(--marrom-escuro);
+        }
+
+        /* ---------- Carrinho ---------- */
+        .carrinho {
+            margin-top: 72px;
+            scroll-margin-top: 90px;
+        }
+
+        .carrinho-box {
+            padding: 28px;
+            border: 1px solid rgb(74 34 14 / 14%);
+            border-radius: 20px;
+            background: rgb(255 250 240 / 88%);
+            box-shadow: 0 12px 30px rgb(74 34 14 / 10%);
+        }
+
+        .carrinho-vazio {
+            margin: 0;
+            text-align: center;
+            font-size: 1.05rem;
+        }
+
+        .carrinho-lista {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .carrinho-item {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 10px 16px;
+            align-items: center;
+            padding: 16px 0;
+            border-bottom: 1px solid rgb(74 34 14 / 14%);
+        }
+
+        .carrinho-item:first-child {
+            padding-top: 0;
+        }
+
+        .item-nome {
+            margin: 0;
+            color: var(--marrom-escuro);
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+        }
+
+        .item-sabor {
+            margin: 2px 0 0;
+            font-size: 0.92rem;
+        }
+
+        .item-subtotal {
+            margin: 0;
+            color: var(--marrom);
+            font-weight: 700;
+            text-align: right;
+        }
+
+        .item-controles {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .qtd-btn {
+            width: 34px;
+            height: 34px;
+            border: 1px solid rgb(74 34 14 / 25%);
+            border-radius: 50%;
+            background: var(--branco);
+            color: var(--marrom);
+            font-size: 1.1rem;
+            font-weight: 700;
+            line-height: 1;
+            cursor: pointer;
+        }
+
+        .qtd-btn:hover,
+        .qtd-btn:focus-visible {
+            background: var(--rosa);
+        }
+
+        .item-qtd {
+            min-width: 24px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .remover-btn {
+            border: 0;
+            background: none;
+            color: var(--marrom);
+            font: inherit;
+            font-size: 0.85rem;
+            text-decoration: underline;
+            cursor: pointer;
+            justify-self: end;
+        }
+
+        .carrinho-total {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0 18px;
+            color: var(--marrom-escuro);
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+        }
+
+        .carrinho-botoes {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .limpar-btn {
+            display: block;
+            margin: 16px auto 0;
+            border: 0;
+            background: none;
+            color: var(--marrom);
+            font: inherit;
+            font-size: 0.88rem;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        /* aviso rápido ao adicionar */
+        .toast {
+            position: fixed;
+            left: 50%;
+            bottom: 24px;
+            z-index: 30;
+            padding: 12px 20px;
+            border-radius: 999px;
+            background: var(--marrom-escuro);
+            color: var(--branco);
+            font-size: 0.92rem;
+            font-weight: 600;
+            opacity: 0;
+            pointer-events: none;
+            transform: translate(-50%, 20px);
+            transition: opacity 200ms ease, transform 200ms ease;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translate(-50%, 0);
         }
 
         footer {
@@ -316,21 +488,22 @@
             }
 
             .contact-grid,
-            .produtos-grid {
+            .produtos-grid,
+            .carrinho-botoes {
                 grid-template-columns: 1fr;
             }
 
             .contact-card {
                 padding: 26px 20px;
             }
-        }
 
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            font-size: 0.88rem;
+            .carrinho-box {
+                padding: 22px 18px;
+            }
 
+            .nav-links {
+                gap: 12px;
+            }
         }
     </style>
 </head>
@@ -342,6 +515,7 @@
             <div class="nav-links">
                 <a class="nav-link" href="#contatos">Fale conosco</a>
                 <a class="nav-link" href="#produtos">Produtos</a>
+                <a class="nav-link" href="#carrinho">Carrinho<span class="cart-badge" id="cart-badge">0</span></a>
             </div>
         </nav>
     </header>
@@ -402,13 +576,13 @@
                 </article>
 
                 <article class="produto-card">
-                    <img src="img/alfajor.jpeg" alt="Alfajor" loading="lazy">
+                    <img src="img/copoF.jpeg" alt="Copo da Felicidade" loading="lazy">
                     <div class="produto-info">
-                        <h3>Alfajor</h3>
-                        <p class="produto-preco">R$ 6,00 a unidade</p>
+                        <h3>Copo da Felicidade</h3>
+                        <p class="produto-preco">R$ 16,00 a unidade</p>
                         <p class="produto-label">Sabores disponíveis:</p>
                         <ul>
-                            <li>Doce de Leite</li>
+                            <li>Ouro Branco</li>
                         </ul>
                     </div>
                 </article>
@@ -417,15 +591,32 @@
                     <img src="img/morango.jpeg" alt="Morango" loading="lazy">
                     <div class="produto-info">
                         <h3>Morango</h3>
-                        <p class="produto-preco">R$ 10,00 a unidade</p>
+                        <p class="produto-preco">R$ 13,00 a unidade</p>
                         <p class="produto-label">Sabores disponíveis:</p>
                         <ul>
                             <li>Coxinha de Brigadeiro</li>
                             <li>Bombom de Ninho</li>
-                            <li>Bombom de Brigadeiro</li>
                         </ul>
                     </div>
                 </article>
+            </div>
+        </section>
+
+        <section class="carrinho" id="carrinho" aria-labelledby="titulo-carrinho">
+            <h2 id="titulo-carrinho" class="produtos-titulo">Seu Carrinho</h2>
+
+            <div class="carrinho-box">
+                <p class="carrinho-vazio" id="carrinho-vazio">Seu carrinho está vazio. Adicione produtos acima!</p>
+                <ul class="carrinho-lista" id="carrinho-lista"></ul>
+
+                <div id="carrinho-rodape" hidden>
+                    <div class="carrinho-total">
+                        <span>Total</span>
+                        <span id="carrinho-total">R$ 0,00</span>
+                    </div>
+                    <div class="carrinho-botoes" id="carrinho-botoes"></div>
+                    <button type="button" class="limpar-btn" id="limpar-carrinho">Limpar carrinho</button>
+                </div>
             </div>
         </section>
     </main>
@@ -434,6 +625,8 @@
         <p>FJ Doces · Feito com carinho</p>
     </footer>
 
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
     <script>
         // Vendedores que recebem os pedidos (número com 55 + DDD)
         const VENDEDORES = [
@@ -441,12 +634,41 @@
             { nome: "Jonas", numero: "558499402380" }
         ];
 
+        const CHAVE = "fj-doces-carrinho";
+        let carrinho = [];
+
+        const moeda = v => v.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+
+        // ---------- Persistência (guarda o carrinho no navegador) ----------
+        try {
+            carrinho = JSON.parse(localStorage.getItem(CHAVE)) || [];
+        } catch (e) {
+            carrinho = [];
+        }
+
+        function salvar() {
+            try {
+                localStorage.setItem(CHAVE, JSON.stringify(carrinho));
+            } catch (e) { /* sem armazenamento: o carrinho vale só nesta visita */ }
+        }
+
+        // ---------- Aviso rápido ----------
+        let toastTimer;
+        function aviso(texto) {
+            const t = document.getElementById("toast");
+            t.textContent = texto;
+            t.classList.add("show");
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => t.classList.remove("show"), 1800);
+        }
+
+        // ---------- Botão "Adicionar ao carrinho" em cada produto ----------
         document.querySelectorAll(".produto-card").forEach(card => {
             const produto = card.querySelector("h3").textContent.trim();
             const precoTexto = card.querySelector(".produto-preco")?.textContent.trim() || "";
-            const precoUnit = parseFloat(
+            const preco = parseFloat(
                 (precoTexto.match(/R\$\s*([\d.,]+)/)?.[1] || "").replace(".", "").replace(",", ".")
-            );
+            ) || 0;
             const sabores = [...card.querySelectorAll("li")].map(li => li.textContent.trim());
 
             const pedido = document.createElement("div");
@@ -460,35 +682,142 @@
                 <label>Quantidade
                     <input class="p-qtd" type="number" min="1" value="1" inputmode="numeric">
                 </label>
-                <div class="pedido-botoes">
-                    ${VENDEDORES.map((v, i) =>
-                `<button type="button" class="pedido-btn" data-v="${i}">Pedir com ${v.nome}</button>`
-            ).join("")}
-                </div>
+                <button type="button" class="pedido-btn">Adicionar ao carrinho</button>
             `;
             card.querySelector(".produto-info").appendChild(pedido);
 
-            pedido.querySelectorAll(".pedido-btn").forEach(btn => {
-                btn.addEventListener("click", () => {
-                    const vendedor = VENDEDORES[btn.dataset.v];
-                    const sabor = pedido.querySelector(".p-sabor").value;
-                    const qtd = Math.max(1, parseInt(pedido.querySelector(".p-qtd").value, 10) || 1);
+            pedido.querySelector(".pedido-btn").addEventListener("click", () => {
+                const sabor = pedido.querySelector(".p-sabor").value;
+                const qtd = Math.max(1, parseInt(pedido.querySelector(".p-qtd").value, 10) || 1);
 
-                    let msg = `Olá, ${vendedor.nome}! Gostaria de fazer um pedido:\n\n` +
-                        `*Produto:* ${produto}\n` +
-                        `*Sabor:* ${sabor}\n` +
-                        `*Quantidade:* ${qtd}`;
+                // mesmo produto + mesmo sabor: soma a quantidade
+                const existente = carrinho.find(i => i.produto === produto && i.sabor === sabor);
+                if (existente) {
+                    existente.qtd += qtd;
+                } else {
+                    carrinho.push({ produto, sabor, preco, qtd });
+                }
 
-                    if (!isNaN(precoUnit)) {
-                        const total = (precoUnit * qtd).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
-                        msg += `\n*Total:* ${total}`;
-                    }
-
-                    const url = `https://wa.me/${vendedor.numero}?text=${encodeURIComponent(msg)}`;
-                    window.open(url, "_blank", "noopener");
-                });
+                pedido.querySelector(".p-qtd").value = 1;
+                salvar();
+                renderCarrinho();
+                aviso(`${qtd}x ${produto} adicionado ao carrinho`);
             });
         });
+
+        // ---------- Botões "Pedir com ..." do carrinho ----------
+        const botoesBox = document.getElementById("carrinho-botoes");
+        VENDEDORES.forEach((v, i) => {
+            const b = document.createElement("button");
+            b.type = "button";
+            b.className = "pedido-btn";
+            b.textContent = `Pedir com ${v.nome}`;
+            b.addEventListener("click", () => enviarPedido(i));
+            botoesBox.appendChild(b);
+        });
+
+        // ---------- Mensagem automática ----------
+        function enviarPedido(indiceVendedor) {
+            if (!carrinho.length) return;
+            const vendedor = VENDEDORES[indiceVendedor];
+
+            let total = 0;
+            const linhas = carrinho.map((item, n) => {
+                const sub = item.preco * item.qtd;
+                total += sub;
+                return `${n + 1}. ${item.qtd}x ${item.produto} (${item.sabor}) - ${moeda(sub)}`;
+            });
+
+            const msg = `Olá, ${vendedor.nome}! Gostaria de fazer um pedido:\n\n` +
+                `*Itens:*\n${linhas.join("\n")}\n\n` +
+                `*Total:* ${moeda(total)}`;
+
+            const url = `https://wa.me/${vendedor.numero}?text=${encodeURIComponent(msg)}`;
+            window.open(url, "_blank", "noopener");
+        }
+
+        // ---------- Desenha o carrinho ----------
+        const lista = document.getElementById("carrinho-lista");
+
+        function renderCarrinho() {
+            lista.innerHTML = "";
+            let total = 0;
+            let qtdTotal = 0;
+
+            carrinho.forEach((item, idx) => {
+                const sub = item.preco * item.qtd;
+                total += sub;
+                qtdTotal += item.qtd;
+
+                const li = document.createElement("li");
+                li.className = "carrinho-item";
+
+                const info = document.createElement("div");
+                const nome = document.createElement("p");
+                nome.className = "item-nome";
+                nome.textContent = item.produto;
+                const sabor = document.createElement("p");
+                sabor.className = "item-sabor";
+                sabor.textContent = `${item.sabor} · ${moeda(item.preco)} a unidade`;
+                info.append(nome, sabor);
+
+                const subtotal = document.createElement("p");
+                subtotal.className = "item-subtotal";
+                subtotal.textContent = moeda(sub);
+
+                const controles = document.createElement("div");
+                controles.className = "item-controles";
+                const menos = document.createElement("button");
+                menos.type = "button";
+                menos.className = "qtd-btn";
+                menos.setAttribute("aria-label", "Diminuir quantidade");
+                menos.textContent = "−";
+                menos.addEventListener("click", () => alterarQtd(idx, -1));
+                const qtd = document.createElement("span");
+                qtd.className = "item-qtd";
+                qtd.textContent = item.qtd;
+                const mais = document.createElement("button");
+                mais.type = "button";
+                mais.className = "qtd-btn";
+                mais.setAttribute("aria-label", "Aumentar quantidade");
+                mais.textContent = "+";
+                mais.addEventListener("click", () => alterarQtd(idx, 1));
+                controles.append(menos, qtd, mais);
+
+                const remover = document.createElement("button");
+                remover.type = "button";
+                remover.className = "remover-btn";
+                remover.textContent = "Remover";
+                remover.addEventListener("click", () => {
+                    carrinho.splice(idx, 1);
+                    salvar();
+                    renderCarrinho();
+                });
+
+                li.append(info, subtotal, controles, remover);
+                lista.appendChild(li);
+            });
+
+            document.getElementById("carrinho-total").textContent = moeda(total);
+            document.getElementById("cart-badge").textContent = qtdTotal;
+            document.getElementById("carrinho-vazio").hidden = carrinho.length > 0;
+            document.getElementById("carrinho-rodape").hidden = carrinho.length === 0;
+        }
+
+        function alterarQtd(idx, delta) {
+            carrinho[idx].qtd += delta;
+            if (carrinho[idx].qtd < 1) carrinho.splice(idx, 1);
+            salvar();
+            renderCarrinho();
+        }
+
+        document.getElementById("limpar-carrinho").addEventListener("click", () => {
+            carrinho = [];
+            salvar();
+            renderCarrinho();
+        });
+
+        renderCarrinho();
     </script>
 </body>
 
